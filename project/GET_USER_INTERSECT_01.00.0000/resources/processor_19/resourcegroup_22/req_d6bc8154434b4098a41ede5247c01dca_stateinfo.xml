@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oracle-xsl-webmapper:StateInfo xmlns:oracle-xsl-webmapper="http://www.oracle.com/xsl/webmapper/state" version="1.1">
+	<oracle-xsl-webmapper:ErrorsCount>0</oracle-xsl-webmapper:ErrorsCount>
+	<oracle-xsl-webmapper:WarningsCount>0</oracle-xsl-webmapper:WarningsCount>
+	<oracle-xsl-webmapper:IsImported>false</oracle-xsl-webmapper:IsImported>
+	<oracle-xsl-webmapper:HasMappings>true</oracle-xsl-webmapper:HasMappings>
+	<oracle-xsl-webmapper:StateInfoIsStale>false</oracle-xsl-webmapper:StateInfoIsStale>
+	<oracle-xsl-webmapper:SourcesReferenced>
+		<element xmlns:ns0="http://xmlns.oracle.com/cloud/adapter/REST/Get_Second_Role_REQUEST/types">ns0:executeResponse</element>
+		<rpcStyle>false</rpcStyle>
+		<type>2</type>
+		<uriAbsoluteLocation>file:/u01/data/domains/prodic_domain/servers/prodic_d_server_1/storage/ics/tmp/WC/itg_7991844052113939505/resources/application_41/inbound_42/resourcegroup_43/Get_Second_Role_REQUEST.wsdl</uriAbsoluteLocation>
+		<param>Get-Second-Role</param>
+		<primary>false</primary>
+	</oracle-xsl-webmapper:SourcesReferenced>
+	<oracle-xsl-webmapper:SourcesReferenced>
+		<element xmlns:ns1="http://xmlns.oracle.com/cloud/adapter/REST/Get_First_Role_REQUEST/types">ns1:executeResponse</element>
+		<rpcStyle>false</rpcStyle>
+		<type>2</type>
+		<uriAbsoluteLocation>file:/u01/data/domains/prodic_domain/servers/prodic_d_server_1/storage/ics/tmp/WC/itg_7991844052113939505/resources/application_24/inbound_25/resourcegroup_26/Get_First_Role_REQUEST.wsdl</uriAbsoluteLocation>
+		<param>Get-First-Role</param>
+		<primary>false</primary>
+	</oracle-xsl-webmapper:SourcesReferenced>
+	<oracle-xsl-webmapper:AllSources>
+		<element xmlns:ns2="http://xmlns.oracle.com/cloud/adapter/REST/Get_Users_REQUEST/types">ns2:execute</element>
+		<rpcStyle>false</rpcStyle>
+		<type>2</type>
+		<uriAbsoluteLocation>file:/u01/data/domains/prodic_domain/servers/prodic_d_server_1/storage/ics/tmp/WC/itg_7991844052113939505/resources/application_8/outbound_9/resourcegroup_10/Get_Users_REQUEST.wsdl</uriAbsoluteLocation>
+		<primary>true</primary>
+	</oracle-xsl-webmapper:AllSources>
+	<oracle-xsl-webmapper:AllSources>
+		<element xmlns:ns3="http://xmlns.oracle.com/cloud/adapter/REST/Get_Second_Role_REQUEST/types">ns3:executeResponse</element>
+		<rpcStyle>false</rpcStyle>
+		<type>2</type>
+		<uriAbsoluteLocation>file:/u01/data/domains/prodic_domain/servers/prodic_d_server_1/storage/ics/tmp/WC/itg_7991844052113939505/resources/application_41/inbound_42/resourcegroup_43/Get_Second_Role_REQUEST.wsdl</uriAbsoluteLocation>
+		<param>Get-Second-Role</param>
+		<primary>false</primary>
+	</oracle-xsl-webmapper:AllSources>
+	<oracle-xsl-webmapper:AllSources>
+		<element xmlns:ns4="http://xmlns.oracle.com/cloud/adapter/REST/Get_First_Role_REQUEST/types">ns4:executeResponse</element>
+		<rpcStyle>false</rpcStyle>
+		<type>2</type>
+		<uriAbsoluteLocation>file:/u01/data/domains/prodic_domain/servers/prodic_d_server_1/storage/ics/tmp/WC/itg_7991844052113939505/resources/application_24/inbound_25/resourcegroup_26/Get_First_Role_REQUEST.wsdl</uriAbsoluteLocation>
+		<param>Get-First-Role</param>
+		<primary>false</primary>
+	</oracle-xsl-webmapper:AllSources>
+</oracle-xsl-webmapper:StateInfo>

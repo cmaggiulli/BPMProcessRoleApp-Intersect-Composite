@@ -1,0 +1,222 @@
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_Second_Role_REQUEST" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns0="http://xmlns.oracle.com/cloud/adapter/REST/Get_Second_Role_REQUEST/types" xmlns:ns1="http://xmlns.oracle.com/cloud/adapter/REST/Get_Second_Role_REQUEST" xmlns:ns2="http://xmlns.oracle.com/cloud/generic/rest/fault/REST/Get-Second-Role" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+	<wsdl:types>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/cloud/adapter/REST/Get-Second-Role/types" nxsd:version="JSON" nxsd:encoding="UTF-8" xmlns="http://xmlns.oracle.com/cloud/adapter/REST/Get-Second-Role/types" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd">
+			<xsd:element name="response-wrapper">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="count" type="xsd:double"/>
+						<xsd:element name="hasMore" type="xsd:boolean"/>
+						<xsd:element name="items" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="levels" type="xsd:double"/>
+									<xsd:element name="id" type="xsd:string"/>
+									<xsd:element name="type" type="xsd:string"/>
+									<xsd:element name="identity">
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:element name="href" type="xsd:string"/>
+												<xsd:element name="length" type="xsd:double"/>
+												<xsd:element name="rel" type="xsd:string"/>
+											</xsd:sequence>
+										</xsd:complexType>
+									</xsd:element>
+									<xsd:element name="adminFlag" type="xsd:string"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="links" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="href" type="xsd:string"/>
+									<xsd:element name="length" type="xsd:double"/>
+									<xsd:element name="rel" type="xsd:string"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xs:schema>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/cloud/generic/rest/fault/REST/Get-Second-Role" nxsd:version="JSON" nxsd:encoding="UTF-8" xmlns="http://xmlns.oracle.com/cloud/generic/rest/fault/REST/Get-Second-Role" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd">
+			<xsd:element name="APIInvocationError">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="type" type="xsd:string"/>
+						<xsd:element name="title" type="xsd:string"/>
+						<xsd:element name="detail" type="xsd:string"/>
+						<xsd:element name="errorCode" type="xsd:string"/>
+						<xsd:element name="errorDetails" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="type" type="xsd:string"/>
+									<xsd:element name="instance" type="xsd:string"/>
+									<xsd:element name="title" type="xsd:string"/>
+									<xsd:element name="errorPath" type="xsd:string"/>
+									<xsd:element name="errorCode" type="xsd:string"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xs:schema>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://xml.oracle.com/types/REST/Get_Second_Role_REQUEST" xmlns="http://xml.oracle.com/types/REST/Get_Second_Role_REQUEST" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://xml.oracle.com/adapters/extension">
+			<xs:complexType name="TemplateParameters">
+				<xs:annotation>
+					<xs:appinfo/>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="role" type="xs:string" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/cloud/adapter/connectivityproperties/REST/Get_Second_Role_REQUEST/RESTOUTREQ" xmlns="http://xmlns.oracle.com/cloud/adapter/connectivityproperties" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:element name="ConnectivityProperties">
+				<xs:complexType>
+					<xs:sequence>
+						<!--<xs:element name="Cloud" maxOccurs="1" minOccurs="0">                    <xs:complexType>                        <xs:sequence>                            <xs:element type="xs:integer" name="RetryCount"                                        maxOccurs="1" minOccurs="0" />                            <xs:element type="xs:integer" name="RetryInterval"                                        maxOccurs="1" minOccurs="0" />                        </xs:sequence>                    </xs:complexType>                </xs:element>-->
+						<!--<xs:choice>-->
+						<xs:element name="RestApi" maxOccurs="1" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Runtime properties for REST based endpoints. These properties can be used to dynamically configure the runtime behavior of REST based requests</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:choice>
+										<xs:element type="xs:anyURI" name="AbsoluteEndpointUri" maxOccurs="1" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Absolute URI. When mapped to a valid URI,the requests will be routed to this URI. If it is mapped, BaseUri,RelativeUri and Uri mappings, if any, will be ignored. Uri precedence order is 1) AbsoluteEndpointUri 2) BaseUri + RelativeUri 3) Uri</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element type="xs:anyURI" name="BaseUri" maxOccurs="1" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Base URI where this request will be routed to. Equivalent of base connection URL provided during connection configuration. Must be mapped if RelativeUri is alo mapped. When RelativeUri is not mapped, corresponding value from endpoint configuration is used. Mapping have no impact if AbsoluteEndpointUri is also mapped and is not empty. Uri precedence order is 1) AbsoluteEndpointUri 2) BaseUri + RelativeUri 3) Uri.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element type="xs:string" name="RelativeUri" maxOccurs="1" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Relative URI of the resource. Must start with a "/". BaseUri must also be mapped and be non empty if this is mapped. The final endpoint URI is created by appending RelativeUri to BaseUri. Uri precedence order is 1) AbsoluteEndpointUri 2) BaseUri + RelativeUri 3) Uri.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Uri" maxOccurs="1" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Use one of the following to substitute URI components, from runtime values, in the target endpoint URI. These mappings will not have any impact if either of BaseUri or AbsoluteEndpointUri is also mapped and is not empty. Uri precedence order is 1) AbsoluteEndpointUri 2) BaseUri + RelativeUri 3) Uri</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Scheme" maxOccurs="1" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Protocol. Only HTTP or HTTPS is allowed</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="HTTP"/>
+																<xs:enumeration value="HTTPS"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element type="xs:string" name="Host" maxOccurs="1" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Host. Host this request will be routed to.</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element type="xs:integer" name="Port" maxOccurs="1" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Port. Port of the URI this request will be routed to.</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element type="xs:string" name="Query" maxOccurs="1" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Query String. The part of the URL that follows the "?". If the mapped value is non null, query string in the original URL will be substituted with the value determined at runtime.</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element type="xs:string" name="Path" maxOccurs="1" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Path. The part of the URL between the hostname and "?".</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+									<!--<xs:element name="Http" maxOccurs="1" minOccurs="0">                                <xs:complexType>                                    <xs:sequence>                                        <xs:element name="Method">                                            <xs:annotation>                                                <xs:documentation>HTTP Method to be used to submit this request. When mapped to a non null value, overrides the HTTP method selected during endpoint configuration.                                                </xs:documentation>                                            </xs:annotation>                                            <xs:simpleType>                                                <xs:restriction base="xs:string">                                                    <xs:enumeration value="GET"/>                                                    <xs:enumeration value="POST"/>                                                    <xs:enumeration value="PUT"/>                                                    <xs:enumeration value="PATCH"/>                                                    <xs:enumeration value="DELETE"/>                                                    <xs:enumeration value="HEAD"/>                                                </xs:restriction>                                            </xs:simpleType>                                        </xs:element>                                        <xs:element name="Message" type="xs:string">                                            <xs:annotation>                                                <xs:documentation>Payload to be sent to the endpoint. This paylod will be sent as is to the endpoint in request body if the HTTP method is POST                                                </xs:documentation>                                            </xs:annotation>                                        </xs:element>                                    </xs:sequence>                                </xs:complexType>                            </xs:element>-->
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<!--<xs:element name="Soap" maxOccurs="1" minOccurs="0">                    <xs:complexType>                        <xs:sequence>                            <xs:element type="xs:anyURI" name="SoapEndpointUri"                                        maxOccurs="1" minOccurs="0" />                            <xs:element name="WSAddressingProperties" maxOccurs="1"                                        minOccurs="0">                                <xs:complexType>                                    <xs:sequence>                                        <xs:element type="xs:boolean" name="EnableWSAAddressing" />                                        <xs:element type="xs:boolean" name="MustUnderstand" />                                        <xs:element type="xs:string" name="Action" />                                        <xs:element type="xs:string" name="To"/>                                        <xs:element type="xs:string" name="ReplyTo" />                                        <xs:element type="xs:string" name="ReplyToReferenceParameters" />                                        <xs:element type="xs:string" name="MessageId" />                                        <xs:element type="xs:string" name="From" />                                        <xs:element type="xs:string" name="FaultTo" />                                        <xs:element type="xs:string" name="FaultToReferenceParameters" />                                        <xs:element type="xs:string" name="RelatesTo" />                                        <xs:element type="xs:string" name="RelationshipType" />                                    </xs:sequence>                                </xs:complexType>                            </xs:element>                            <xs:element name="WSSecurityConfigurtion" maxOccurs="1"                                        minOccurs="0">                                <xs:complexType>                                    <xs:sequence>                                        <xs:element type="xs:string" name="Username" />                                        <xs:element type="xs:boolean" name="MustUnderstand" />                                        <xs:element type="xs:dateTime" name="Created" />                                    </xs:sequence>                                </xs:complexType>                            </xs:element>                        </xs:sequence>                    </xs:complexType>                </xs:element>-->
+						<!--</xs:choice>-->
+						<xs:element name="Plugin">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element type="xs:boolean" name="PostQueryString" maxOccurs="1" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Default False. When true, the fields in the query string (Query Parameters) will be sent as form data in request body.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element type="xs:boolean" name="UseFormURLEncoding" maxOccurs="1" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Default True. When false, ICS will follow RFC 3986 compliant encoding of the query string parameters. For REST APIs that are compliant                            with RFC 3986, space is expected to be encoded as %20 in the query string.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_Second_Role_REQUEST/types" nxsd:version="JSON" nxsd:encoding="UTF-8" xmlns="http://xmlns.oracle.com/cloud/adapter/REST/Get-Second-Role/types" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns3="http://xml.oracle.com/types/REST/Get_Second_Role_REQUEST" xmlns:ns4="http://xmlns.oracle.com/cloud/adapter/connectivityproperties/REST/Get_Second_Role_REQUEST/RESTOUTREQ" xmlns:tns0="http://xmlns.oracle.com/cloud/adapter/REST/Get_Second_Role_REQUEST/types" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns5="http://xmlns.oracle.com/cloud/adapter/REST/Get-Second-Role/types">
+			<xs:import namespace="http://xmlns.oracle.com/cloud/adapter/REST/Get-Second-Role/types"/>
+			<xs:import namespace="http://xmlns.oracle.com/cloud/adapter/connectivityproperties/REST/Get_Second_Role_REQUEST/RESTOUTREQ"/>
+			<xs:import namespace="http://xml.oracle.com/types/REST/Get_Second_Role_REQUEST"/>
+			<xs:element name="execute" type="tns0:executeType"/>
+			<xs:complexType name="executeType">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" type="ns3:TemplateParameters" name="TemplateParameters"/>
+					<xs:element ref="ns4:ConnectivityProperties"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="executeResponse" type="tns0:executeResponseType"/>
+			<xs:complexType name="executeResponseType">
+				<xs:sequence>
+					<xs:element ref="ns5:response-wrapper"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="executeRequestMessage">
+		<wsdl:part name="parameters" element="ns0:execute"/>
+	</wsdl:message>
+	<wsdl:message name="executeResponseMessage">
+		<wsdl:part name="parameters" element="ns0:executeResponse"/>
+	</wsdl:message>
+	<wsdl:message name="APIInvocationError">
+		<wsdl:part name="parameters" element="ns2:APIInvocationError"/>
+	</wsdl:message>
+	<wsdl:portType name="Get_Second_Role_REQUESTPortType">
+		<wsdl:operation name="execute">
+			<cloud:CloudOperation targetOperation="execute" xmlns:cloud="http://xml.oracle.com/types"/>
+			<wsdl:input message="ns1:executeRequestMessage"/>
+			<wsdl:output message="ns1:executeResponseMessage"/>
+			<wsdl:fault name="APIInvocationError" message="ns1:APIInvocationError"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="Get_Second_Role_REQUESTPortType-binding" type="ns1:Get_Second_Role_REQUESTPortType">
+		<binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="execute">
+			<operation soapAction="http://xmlns.oracle.com/cloud/adapter/REST/Get_Second_Role_REQUEST/execute"/>
+			<wsdl:input>
+				<body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<plnk:partnerLinkType name="get-second-role_41_inbound_42">
+		<plnk:role name="Get_Second_Role_REQUESTPortType">
+			<plnk:portType name="ns1:Get_Second_Role_REQUESTPortType"/>
+		</plnk:role>
+	</plnk:partnerLinkType>
+</wsdl:definitions>

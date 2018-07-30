@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:icsproject xmlns="http://www.oracle.com/2014/03/ics/flow/definition" xmlns:ns1="http://www.oracle.com/2014/03/ics/project" xmlns:ns0="http://www.oracle.com/2014/03/ics/project/definition" name="project_1" version="7.2" modelType="freeform">
+	<ns0:projectCode>GET_USER_INTERSECT</ns0:projectCode>
+	<ns0:projectVersion>01.00.0000</ns0:projectVersion>
+	<ns0:projectName>Get User Intersect</ns0:projectName>
+	<ns0:projectDescription/>
+	<ns0:percentComplete>100</ns0:percentComplete>
+	<ns0:projectHasErrors>false</ns0:projectHasErrors>
+	<ns0:projectHasWarnings>false</ns0:projectHasWarnings>
+	<ns1:icsflow name="flow_1">
+		<application name="application_8">
+			<role>source</role>
+			<adapter>
+				<type>app-adapter</type>
+				<code>IC</code>
+				<name>Get-Users</name>
+				<property name="hasAttachment" value="false"/>
+			</adapter>
+			<mep>push-sync</mep>
+			<outbound name="outbound_9">
+				<binding>rest</binding>
+				<operation>execute</operation>
+				<resourceGroup name="resourcegroup_10">
+					<resource name="resource_12" location="../resources/application_8/outbound_9/resourcegroup_10/Get_Users_REQUEST.wsdl" type="wsdl"/>
+					<resource name="resource_79" location="../resources/application_8/outbound_9/resourcegroup_10/Get_Users_REQUEST.jca" type="jca"/>
+				</resourceGroup>
+				<input name="input_14">
+					<role>response</role>
+					<messageContextRef refUri="messagecontext_13"/>
+				</input>
+				<input name="input_18">
+					<role>fault</role>
+					<subRole>APIInvocationError</subRole>
+					<messageContextRef refUri="messagecontext_17"/>
+				</input>
+				<output name="output_16">
+					<role>request</role>
+					<messageContextRef refUri="messagecontext_15"/>
+				</output>
+			</outbound>
+		</application>
+		<application name="application_24">
+			<role>target</role>
+			<adapter>
+				<type>app-adapter</type>
+				<code>PROCESS_CLOUD</code>
+				<name>Get-First-Role</name>
+				<property name="hasAttachment" value="false"/>
+			</adapter>
+			<mep>push-sync</mep>
+			<inbound name="inbound_25">
+				<binding>rest</binding>
+				<operation>execute</operation>
+				<resourceGroup name="resourcegroup_26">
+					<resource name="resource_27" location="../resources/application_24/inbound_25/resourcegroup_26/Get_First_Role_REQUEST.jca" type="jca"/>
+					<resource name="resource_28" location="../resources/application_24/inbound_25/resourcegroup_26/ICSFault.xsd" type="xsd"/>
+					<resource name="resource_29" location="../resources/application_24/inbound_25/resourcegroup_26/Get_First_Role_REQUEST.wsdl" type="wsdl"/>
+				</resourceGroup>
+				<input name="input_31">
+					<role>request</role>
+					<messageContextRef refUri="messagecontext_30"/>
+				</input>
+				<output name="output_33">
+					<role>response</role>
+					<messageContextRef refUri="messagecontext_32"/>
+				</output>
+				<output name="output_35">
+					<role>fault</role>
+					<subRole>APIInvocationError</subRole>
+					<messageContextRef refUri="messagecontext_34"/>
+				</output>
+			</inbound>
+		</application>
+		<application name="application_41">
+			<role>target</role>
+			<adapter>
+				<type>app-adapter</type>
+				<code>PROCESS_CLOUD</code>
+				<name>Get-Second-Role</name>
+				<property name="hasAttachment" value="false"/>
+			</adapter>
+			<mep>push-sync</mep>
+			<inbound name="inbound_42">
+				<binding>rest</binding>
+				<operation>execute</operation>
+				<resourceGroup name="resourcegroup_43">
+					<resource name="resource_44" location="../resources/application_41/inbound_42/resourcegroup_43/Get_Second_Role_REQUEST.jca" type="jca"/>
+					<resource name="resource_45" location="../resources/application_41/inbound_42/resourcegroup_43/ICSFault.xsd" type="xsd"/>
+					<resource name="resource_46" location="../resources/application_41/inbound_42/resourcegroup_43/Get_Second_Role_REQUEST.wsdl" type="wsdl"/>
+				</resourceGroup>
+				<input name="input_48">
+					<role>request</role>
+					<messageContextRef refUri="messagecontext_47"/>
+				</input>
+				<output name="output_50">
+					<role>response</role>
+					<messageContextRef refUri="messagecontext_49"/>
+				</output>
+				<output name="output_52">
+					<role>fault</role>
+					<subRole>APIInvocationError</subRole>
+					<messageContextRef refUri="messagecontext_51"/>
+				</output>
+			</inbound>
+		</application>
+		<processor name="processor_19">
+			<type>transformer</type>
+			<role>transformer:response-map</role>
+			<resourceGroup name="resourcegroup_22">
+				<resource name="resource_23" location="../resources/processor_19/resourcegroup_22/req_d6bc8154434b4098a41ede5247c01dca.xsl" type="xslt"/>
+			</resourceGroup>
+			<resourceRef refUri="messagecontext_49">
+				<role>secondary-source</role>
+				<subRole>Get-Second-Role</subRole>
+			</resourceRef>
+			<resourceRef refUri="messagecontext_32">
+				<role>secondary-source</role>
+				<subRole>Get-First-Role</subRole>
+			</resourceRef>
+			<input name="input_20">
+				<messageContextRef refUri="messagecontext_15"/>
+			</input>
+			<output name="output_21">
+				<messageContextRef refUri="messagecontext_13"/>
+			</output>
+			<property name="has-mappings" value="true"/>
+		</processor>
+		<processor name="processor_36">
+			<type>transformer</type>
+			<role>transformer:response-map</role>
+			<resourceGroup name="resourcegroup_39">
+				<resource name="resource_40" location="../resources/processor_36/resourcegroup_39/req_c076ed6667564e55a8b81a66102012d4.xsl" type="xslt"/>
+			</resourceGroup>
+			<input name="input_37">
+				<messageContextRef refUri="messagecontext_15"/>
+			</input>
+			<output name="output_38">
+				<messageContextRef refUri="messagecontext_30"/>
+			</output>
+			<property name="has-mappings" value="true"/>
+		</processor>
+		<processor name="processor_53">
+			<type>transformer</type>
+			<role>transformer:response-map</role>
+			<resourceGroup name="resourcegroup_56">
+				<resource name="resource_57" location="../resources/processor_53/resourcegroup_56/req_1a0c4f09ca554c95b1278855c7f9cb35.xsl" type="xslt"/>
+			</resourceGroup>
+			<input name="input_54">
+				<messageContextRef refUri="messagecontext_15"/>
+			</input>
+			<output name="output_55">
+				<messageContextRef refUri="messagecontext_47"/>
+			</output>
+			<property name="has-mappings" value="true"/>
+		</processor>
+		<processor name="processor_80">
+			<type>messageTracker</type>
+			<role>messageTracker:global</role>
+			<trackingVariableGroup>
+				<trackingVariable>
+					<role>tracking_var_1</role>
+					<primary>true</primary>
+					<name>first Role</name>
+					<xpath>/execute/TemplateParameters/firstRole</xpath>
+					<messageContextRef refUri="messagecontext_15"/>
+					<output name="output_82">
+						<messageContextRef refUri="messagecontext_81"/>
+					</output>
+				</trackingVariable>
+				<trackingVariable>
+					<role>tracking_var_2</role>
+					<primary>false</primary>
+					<name>tracking_var_2</name>
+					<xpath/>
+					<messageContextRef refUri="messagecontext_15"/>
+					<output name="output_84">
+						<messageContextRef refUri="messagecontext_83"/>
+					</output>
+				</trackingVariable>
+				<trackingVariable>
+					<role>tracking_var_3</role>
+					<primary>false</primary>
+					<name>tracking_var_3</name>
+					<xpath/>
+					<messageContextRef refUri="messagecontext_15"/>
+					<output name="output_86">
+						<messageContextRef refUri="messagecontext_85"/>
+					</output>
+				</trackingVariable>
+			</trackingVariableGroup>
+		</processor>
+		<messageContext name="messagecontext_2">
+			<rootElement elementName="string" namespace="http://www.w3.org/2001/XMLSchema"/>
+		</messageContext>
+		<messageContext name="messagecontext_4">
+			<rootElement elementName="string" namespace="http://www.w3.org/2001/XMLSchema"/>
+		</messageContext>
+		<messageContext name="messagecontext_6">
+			<rootElement elementName="string" namespace="http://www.w3.org/2001/XMLSchema"/>
+		</messageContext>
+		<messageContext name="messagecontext_13">
+			<resourceRef refUri="application_8/outbound_9/resourcegroup_10/resource_12"/>
+			<rootElement elementName="executeResponse" namespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_Users_REQUEST/types"/>
+			<wsdlMessage messageName="executeResponseMessage" namespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_Users_REQUEST" partName="parameters"/>
+		</messageContext>
+		<messageContext name="messagecontext_15">
+			<resourceRef refUri="application_8/outbound_9/resourcegroup_10/resource_12"/>
+			<rootElement elementName="execute" namespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_Users_REQUEST/types"/>
+			<wsdlMessage messageName="executeRequestMessage" namespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_Users_REQUEST" partName="parameters"/>
+		</messageContext>
+		<messageContext name="messagecontext_17">
+			<resourceRef refUri="application_8/outbound_9/resourcegroup_10/resource_12"/>
+			<rootElement elementName="APIInvocationError" namespace="http://xmlns.oracle.com/cloud/generic/rest/fault/REST/Get-Users"/>
+			<wsdlMessage messageName="APIInvocationError" namespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_Users_REQUEST" partName="parameters"/>
+			<wsdlFault faultName="APIInvocationError" namespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_Users_REQUEST"/>
+		</messageContext>
+		<messageContext name="messagecontext_30">
+			<resourceRef refUri="application_24/inbound_25/resourcegroup_26/resource_29"/>
+			<rootElement elementName="execute" namespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_First_Role_REQUEST/types"/>
+			<wsdlMessage messageName="executeRequestMessage" namespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_First_Role_REQUEST" partName="parameters"/>
+		</messageContext>
+		<messageContext name="messagecontext_32">
+			<resourceRef refUri="application_24/inbound_25/resourcegroup_26/resource_29"/>
+			<rootElement elementName="executeResponse" namespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_First_Role_REQUEST/types"/>
+			<wsdlMessage messageName="executeResponseMessage" namespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_First_Role_REQUEST" partName="parameters"/>
+		</messageContext>
+		<messageContext name="messagecontext_34">
+			<resourceRef refUri="application_24/inbound_25/resourcegroup_26/resource_29"/>
+			<rootElement elementName="APIInvocationError" namespace="http://xmlns.oracle.com/cloud/generic/rest/fault/REST/Get-First-Role"/>
+			<wsdlMessage messageName="APIInvocationError" namespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_First_Role_REQUEST" partName="parameters"/>
+			<wsdlFault faultName="APIInvocationError" namespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_First_Role_REQUEST"/>
+		</messageContext>
+		<messageContext name="messagecontext_47">
+			<resourceRef refUri="application_41/inbound_42/resourcegroup_43/resource_46"/>
+			<rootElement elementName="execute" namespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_Second_Role_REQUEST/types"/>
+			<wsdlMessage messageName="executeRequestMessage" namespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_Second_Role_REQUEST" partName="parameters"/>
+		</messageContext>
+		<messageContext name="messagecontext_49">
+			<resourceRef refUri="application_41/inbound_42/resourcegroup_43/resource_46"/>
+			<rootElement elementName="executeResponse" namespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_Second_Role_REQUEST/types"/>
+			<wsdlMessage messageName="executeResponseMessage" namespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_Second_Role_REQUEST" partName="parameters"/>
+		</messageContext>
+		<messageContext name="messagecontext_51">
+			<resourceRef refUri="application_41/inbound_42/resourcegroup_43/resource_46"/>
+			<rootElement elementName="APIInvocationError" namespace="http://xmlns.oracle.com/cloud/generic/rest/fault/REST/Get-Second-Role"/>
+			<wsdlMessage messageName="APIInvocationError" namespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_Second_Role_REQUEST" partName="parameters"/>
+			<wsdlFault faultName="APIInvocationError" namespace="http://xmlns.oracle.com/cloud/adapter/REST/Get_Second_Role_REQUEST"/>
+		</messageContext>
+		<messageContext name="messagecontext_60">
+			<rootElement elementName="string" namespace="http://www.w3.org/2001/XMLSchema"/>
+		</messageContext>
+		<messageContext name="messagecontext_62">
+			<rootElement elementName="string" namespace="http://www.w3.org/2001/XMLSchema"/>
+		</messageContext>
+		<messageContext name="messagecontext_64">
+			<rootElement elementName="string" namespace="http://www.w3.org/2001/XMLSchema"/>
+		</messageContext>
+		<messageContext name="messagecontext_67">
+			<rootElement elementName="string" namespace="http://www.w3.org/2001/XMLSchema"/>
+		</messageContext>
+		<messageContext name="messagecontext_69">
+			<rootElement elementName="string" namespace="http://www.w3.org/2001/XMLSchema"/>
+		</messageContext>
+		<messageContext name="messagecontext_71">
+			<rootElement elementName="string" namespace="http://www.w3.org/2001/XMLSchema"/>
+		</messageContext>
+		<messageContext name="messagecontext_74">
+			<rootElement elementName="string" namespace="http://www.w3.org/2001/XMLSchema"/>
+		</messageContext>
+		<messageContext name="messagecontext_76">
+			<rootElement elementName="string" namespace="http://www.w3.org/2001/XMLSchema"/>
+		</messageContext>
+		<messageContext name="messagecontext_78">
+			<rootElement elementName="string" namespace="http://www.w3.org/2001/XMLSchema"/>
+		</messageContext>
+		<messageContext name="messagecontext_81">
+			<rootElement elementName="string" namespace="http://www.w3.org/2001/XMLSchema"/>
+		</messageContext>
+		<messageContext name="messagecontext_83">
+			<rootElement elementName="string" namespace="http://www.w3.org/2001/XMLSchema"/>
+		</messageContext>
+		<messageContext name="messagecontext_85">
+			<rootElement elementName="string" namespace="http://www.w3.org/2001/XMLSchema"/>
+		</messageContext>
+		<orchestration>
+			<receive id="r0" refUri="application_8/outbound_9/output_16"/>
+			<transformer id="m1" refUri="processor_36"/>
+			<invoke id="i0" refUri="application_24"/>
+			<transformer id="m2" refUri="processor_53"/>
+			<invoke id="i1" refUri="application_41"/>
+			<transformer id="m0" refUri="processor_19"/>
+			<reply id="y0" refUri="application_8/outbound_9/input_14"/>
+		</orchestration>
+	</ns1:icsflow>
+</ns1:icsproject>
